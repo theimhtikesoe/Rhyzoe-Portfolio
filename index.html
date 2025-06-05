@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rhyzoe Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0f0f0f;
+      --text-color: #fff;
+      --accent-color: #ff4747;
+      --accent-color-dark: #ff1e1e;
+    }
+    [data-theme="light"] {
+      --bg-color: #f4f4f4;
+      --text-color: #0f0f0f;
+      --accent-color: #0066ff;
+      --accent-color-dark: #0033aa;
+    }
+    [data-theme="neo"] {
+      --bg-color: #111;
+      --text-color: #0ff;
+      --accent-color: #0ff;
+      --accent-color-dark: #0cc;
+    }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+      position: relative;
+      transition: background 0.4s, color 0.4s;
+    }.neon-title {
+  color: rgb(244, 244, 244);
+  text-shadow:
+    0 0 5px rgb(255, 77, 0),
+    0 0 10px rgb(255, 208, 0),
+    0 0 20px rgb(234, 255, 0),
+    0 0 40px rgb(204, 85, 0),
+    0 0 80px #099;
+  font-size: 2.5rem;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+    }
+    .theme-toggle select {
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: var(--accent-color);
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      box-shadow: 0 0 10px var(--accent-color);
+      cursor: pointer;
+    }
+    .widget-box {
+      position: fixed;
+      left: 0;
+      top: 150px;
+      width: 220px;
+      background: rgba(0, 0, 0, 0.6);
+      border-right: 2px solid var(--accent-color);
+      color: var(--text-color);
+      padding: 20px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      z-index: 10;
+      border-radius: 0 10px 10px 0;
+    }
+    .widget-box h4 {
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+    a {
+      text-decoration: none;
+      color: var(--accent-color);
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: var(--accent-color-dark);
+    }
+    .social-links svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      fill: var(--accent-color);
+      vertical-align: middle;
+    }
+    .quote-cloud {
+      font-style: italic;
+      margin: 30px auto;
+      padding: 10px 20px;
+      border-left: 4px solid var(--accent-color);
+      color: var(--text-color);
+      max-width: 600px;
+      text-shadow: 0 0 5px var(--accent-color);
+    }
+    #infoBox {
+      display: none;
+      max-width: 700px;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 20px;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    button {
+      background: var(--accent-color);
+      color: white;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: 2px solid var(--accent-color-dark);
+      border-radius: 25px;
+      box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color-dark);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+    button:hover {
+      background: var(--accent-color-dark);
+      box-shadow: 0 0 15px var(--accent-color), 0 0 25px var(--accent-color-dark);
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-toggle">
+    <select onchange="document.body.setAttribute('data-theme', this.value)">
+      <option value="">Dark</option>
+      <option value="light">Light</option>
+      <option value="neo">Neo</option>
+    </select>
+  </div>
+
+  <div class="widget-box">
+    <h4>💡 To-Do</h4>
+    <ul>
+      <li>🎧 Mix beat for Hook 3</li>
+      <li>📤 Upload teaser</li>
+      <li>📝 Write verse for next track</li>
+    </ul>
+    <h4>🧘‍♂️ Mantra</h4>
+    <p>Stay raw. Stay real. Build from the soul.</p>
+    <h4>⏰ Clock</h4>
+    <div id="clock">--:--:--</div>
+  </div>
+
+  <h1 class="neon-title">Rhyzoe’s Portfolio</h1>
+  <p>Click the button to learn more about me</p>
+  <button onclick="toggleInfo()">Show Info</button>
+
+  <div id="infoBox">
+    <h3>👤 About Me</h3>
+    <p>I'm Theim Htike Soe (aka Rhyzoe), a creative technologist and customer service professional from Myanmar. Currently based in Bangkok, I specialize in blending web development, music, and branding into one soulful expression.</p>
+    <p>I hold a Bachelor's Degree in Computer Science from Computer University Taunggyi and completed a Diploma in Sales and Marketing at Lincoln University College in Malaysia. My final year thesis focused on building an e-commerce & POS system using Laravel & MySQL for a plastic bottle factory.</p>
+    <p>Professionally, I've worked as a freelance developer, bar staff, and sales assistant — mastering both backend logic and face-to-face communication. I’m fluent in Burmese and English, and conversational in Thai.</p>
+    <p>I thrive on hands-on learning, digital storytelling, and building systems that serve people — from POS setups and websites to rap verses and brand strategy.</p>
+  </div>
+
+  <blockquote class="quote-cloud">
+    “I build systems and stories — with code, beats, and soul.”
+  </blockquote>
+
+  <div class="social-links">
+    <h2>🌐 Connect With Me</h2>
+    <ul>
+      <li><a href="https://github.com/theimhtikesoe" target="_blank">💻 GitHub</a></li>
+      <li><a href="mailto:hlah3894@gmail.com">📧 Email Me</a></li>
+      <li><a href="https://music.apple.com/us/artist/rhyzoe/1585617412" target="_blank">🎵 Apple Music</a></li>
+      <li><a href="https://open.spotify.com/artist/6nyd1OiXag3LVVhASA1HQ9" target="_blank">🎶 Spotify</a></li>
+      <li><a href="https://www.facebook.com/share/15zPjsMh3z/?mibextid=wwXIfr" target="_blank">📘 Facebook Page</a></li>
+      <li><a href="https://web.facebook.com/mgrhyzoe.theinhtikesoe?mibextid=wwXIfr&rdid=E5pNvECQRIXDu4pk&share_url=https%3A%2F%2Fweb.facebook.com%2Fshare%2F163Eysu3YX%2F%3Fmibextid%3DwwXIfr%26_rdc%3D1%26_rdr#" target="_blank">👤 Facebook Personal</a></li>
+      <li><a href="https://line.me/ti/p/~mgrhyzoe" target="_blank">💬 LINE</a></li>
+      <li><a href="https://www.instagram.com/mgrhyzoe" target="_blank">📷 Instagram</a></li>
+    </ul>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <iframe style="border-radius:12px" src="https://www.youtube.com/embed/VVFvYvGhfnA" width="100%" height="200" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const clock = document.getElementById('clock');
+      clock.textContent = now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function toggleInfo() {
+      const box = document.getElementById("infoBox");
+      box.style.display = (box.style.display === "block") ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
