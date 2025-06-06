@@ -374,18 +374,42 @@
         setTimeout(() => { box.style.opacity = "1"; }, 10);
       }
     }
+    function showSentMessage(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
+      alert("✅ Message sent! I’ll get back to you soon.");
+      form.reset();
+    } else {
+      alert("❌ Oops, something went wrong.");
+    }
+  });
+}
+
+    
   </script>
 </body>
   
 <footer style="margin-top: 80px; padding: 40px 20px; width: 100%; background: #1c1c1c; text-align: center;">
   <section id="contact" style="max-width: 700px; margin: 0 auto;">
     <h2 style="color: var(--accent-color); font-size: 1.8rem; margin-bottom: 20px;">📬 Contact Me</h2>
-    <form style="display: flex; flex-direction: column; gap: 15px;">
-      <input type="text" placeholder="Your Name" required style="padding: 10px; border-radius: 5px; border: none; background: #333; color: #fff;" />
-      <input type="email" placeholder="Your Email" required style="padding: 10px; border-radius: 5px; border: none; background: #333; color: #fff;" />
-      <textarea rows="4" placeholder="Your Message" style="padding: 10px; border-radius: 5px; border: none; background: #333; color: #fff;"></textarea>
-      <button type="submit" style="background: var(--accent-color); color: white; padding: 12px 24px; font-size: 1rem; font-weight: bold; border: 2px solid var(--accent-color-dark); border-radius: 25px; box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color-dark); cursor: pointer; transition: all 0.3s ease-in-out;">Send Message</button>
-    </form>
+<form action="https://formspree.io/f/mzzzbaky" method="POST" onsubmit="showSentMessage(event)">
+
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+
   </section>
 </footer>
   
