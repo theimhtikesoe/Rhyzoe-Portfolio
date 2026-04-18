@@ -57,7 +57,7 @@
     }
 
     section {
-      padding: 120px 0;
+      padding: 100px 0;
     }
 
     /* Typography */
@@ -85,14 +85,11 @@
       font-weight: 300;
     }
 
-    /* Language & Theme Toggles */
+    /* Controls */
     .controls {
       position: fixed;
       top: 30px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 40px;
+      right: 40px;
       z-index: 1000;
     }
 
@@ -125,6 +122,9 @@
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .glass-card:hover {
@@ -144,10 +144,10 @@
       text-align: center;
     }
 
-    /* Strategy Grid */
-    .strategy-grid {
+    /* Grid Layouts */
+    .strategy-grid, .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 30px;
       margin-top: 60px;
     }
@@ -158,7 +158,7 @@
     }
     
     .my-only {
-      font-family: sans-serif; /* System font for Burmese often looks cleaner than Space Grotesk */
+      font-family: sans-serif;
       letter-spacing: 0;
     }
 
@@ -167,15 +167,18 @@
       background: transparent;
       border: 1px solid var(--accent-cyan);
       color: var(--accent-cyan);
-      padding: 14px 32px;
+      padding: 12px 28px;
       border-radius: 30px;
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       cursor: pointer;
       transition: all 0.3s ease;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-top: 20px;
+      margin-top: auto;
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
     }
 
     .btn-primary:hover {
@@ -238,7 +241,8 @@
     @media (max-width: 768px) {
       .neon-title { font-size: 2.5rem; }
       .container { padding: 0 20px; }
-      .controls { padding: 0 20px; top: 20px; }
+      .controls { right: 20px; top: 20px; }
+      .projects-grid { grid-template-columns: 1fr; }
     }
     
     /* Chat Box Styling */
@@ -296,14 +300,6 @@
 <body data-lang="en">
 
   <div class="controls">
-    <div class="theme-control">
-      <!-- Theme toggle kept simple as requested to maintain original functional options -->
-      <select class="toggle-select" onchange="document.body.setAttribute('data-theme', this.value)">
-        <option value="">Cinematic Dark</option>
-        <option value="light">Soft Light</option>
-        <option value="neo">Vibrant Neo</option>
-      </select>
-    </div>
     <div class="lang-control">
       <select class="toggle-select" onchange="changeLanguage(this.value)">
         <option value="en">English</option>
@@ -321,9 +317,9 @@
       <p class="en-only" style="max-width: 600px; margin: 0 auto 40px; color: #aaa;">"I build systems and stories — with code, beats, and soul."</p>
       <p class="my-only" style="max-width: 600px; margin: 0 auto 40px; color: #aaa;">"အယူအဆများကို လက်တွေ့အသုံးချနိုင်သော System များနှင့် Scalable Output များအဖြစ် ပြောင်းလဲတည်ဆောက်သူ။"</p>
       
-      <button class="btn-primary" onclick="document.getElementById('about').scrollIntoView()">
-        <span class="en-only">Explore Identity</span>
-        <span class="my-only">အချက်အလက်များ</span>
+      <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView()" style="padding: 14px 32px;">
+        <span class="en-only">View Live Demos</span>
+        <span class="my-only">ပရောဂျက်များ ကြည့်မည်</span>
       </button>
       
       <div class="scroll-indicator"></div>
@@ -344,6 +340,71 @@
         <div class="my-only" style="font-size: 1.1rem; color: #ccc;">
           <p style="margin-bottom: 20px;">Rhyzoe သည် နည်းပညာ၊ ဂီတနှင့် ဒစ်ဂျစ်တယ်ထုတ်ကုန်ဖန်တီးမှုတို့ကို ပေါင်းစပ်လုပ်ကိုင်နိုင်သော Multidisciplinary Developer နှင့် Creative Professional တစ်ဦးဖြစ်သည်။ အယူအဆ (Concepts) များကို လက်တွေ့အသုံးချနိုင်သော System များနှင့် Scalable Output များအဖြစ် ပြောင်းလဲတည်ဆောက်ရာတွင် အထူးကျွမ်းကျင်သည်။</p>
           <p>သီအိုရီသက်သက်ထက် လက်တွေ့အကျိုးရှိမှု၊ အမြန်စမ်းသပ်ပြုပြင်နိုင်မှု (Rapid Prototyping) နှင့် အဆက်မပြတ် တိုးတက်မှုကို ပိုမိုတန်ဖိုးထားသည်။ အနာဂတ်ကို မျှော်မှန်းသော Mindset ဖြင့် နည်းပညာနှင့် ဖန်တီးမှုကို အသုံးချကာ တန်ဖိုးရှိပြီး ဝင်ငွေဖန်တီးနိုင်သော Digital Products များကို ဆက်လက် တည်ဆောက်နေသည်။</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="en-only" style="text-align: center; margin-bottom: 60px;" data-aos="fade-down">🚀 Live Demos</h2>
+      <h2 class="my-only" style="text-align: center; margin-bottom: 60px;" data-aos="fade-down">🚀 လက်တွေ့စမ်းသပ်မှုများ</h2>
+      
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="glass-card" data-aos="fade-up">
+          <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">Rhyzoe Portfolio</h3>
+          <p class="en-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">Official portfolio showcasing multidisciplinary works and creative direction.</p>
+          <p class="my-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">နည်းပညာနှင့် ဖန်တီးမှုဆိုင်ရာ လက်ရာများကို စုစည်းဖော်ပြထားသော တရားဝင်ပေါ်တိုဖိုလီယို။</p>
+          <a href="https://rhyzoe-portfolio.vercel.app" target="_blank" class="btn-primary">Live Demo</a>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+          <h3 style="color: var(--accent-purple); margin-bottom: 15px;">Best Buds TH</h3>
+          <p class="en-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">E-commerce and branding platform for a modern lifestyle brand in Thailand.</p>
+          <p class="my-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">ထိုင်းနိုင်ငံရှိ ခေတ်မီလူနေမှုပုံစံအမှတ်တံဆိပ်အတွက် E-commerce နှင့် branding ပလက်ဖောင်း။</p>
+          <a href="https://bestbudsth.vercel.app" target="_blank" class="btn-primary">Live Demo</a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+          <h3 style="color: var(--accent-gold); margin-bottom: 15px;">LatYar</h3>
+          <p class="en-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">Creative digital solutions and system development platform.</p>
+          <p class="my-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">ဖန်တီးမှုဆိုင်ရာ ဒစ်ဂျစ်တယ်ဖြေရှင်းချက်များနှင့် စနစ်များ တည်ဆောက်ရေး ပလက်ဖောင်း။</p>
+          <a href="https://latyar.vercel.app" target="_blank" class="btn-primary">Live Demo</a>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="glass-card" data-aos="fade-up">
+          <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">Daily POS Report</h3>
+          <p class="en-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">System for managing and automating daily POS closing reports.</p>
+          <p class="my-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">နေ့စဉ် POS အရောင်းအစီရင်ခံစာများကို စီမံခန့်ခွဲပြီး အလိုအလျောက်ဆောင်ရွက်ပေးသောစနစ်။</p>
+          <a href="https://daily-pos-closing-report-system.vercel.app" target="_blank" class="btn-primary">Live Demo</a>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+          <h3 style="color: var(--accent-purple); margin-bottom: 15px;">Thai Lottery Live</h3>
+          <p class="en-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">Real-time Thai lottery results and tracking application.</p>
+          <p class="my-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">ထိုင်းထီပေါက်စဉ်များကို အချိန်နှင့်တပြေးညီ ကြည့်ရှုစစ်ဆေးနိုင်သော အပလီကေးရှင်း။</p>
+          <a href="https://thai-lottery-live.vercel.app" target="_blank" class="btn-primary">Live Demo</a>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+          <h3 style="color: var(--accent-gold); margin-bottom: 15px;">New Life 6 Miles</h3>
+          <p class="en-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">Business management and distribution tracking for New Life.</p>
+          <p class="my-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">New Life လုပ်ငန်းအတွက် စီးပွားရေးစီမံခန့်ခွဲမှုနှင့် ဖြန့်ဖြူးရေးခြေရာခံစနစ်။</p>
+          <a href="https://newlife6miles.vercel.app" target="_blank" class="btn-primary">Live Demo</a>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="glass-card" data-aos="fade-up">
+          <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">The Lobby Menu</h3>
+          <p class="en-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">Digital interactive menu for hospitality and F&B services.</p>
+          <p class="my-only" style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">စားသောက်ဆိုင်နှင့် ဝန်ဆောင်မှုလုပ်ငန်းများအတွက် အပြန်အလှန်အကျိုးပြု ဒစ်ဂျစ်တယ်မီနူး။</p>
+          <a href="https://the-lobby-menu.vercel.app" target="_blank" class="btn-primary">Live Demo</a>
         </div>
       </div>
     </div>
@@ -379,55 +440,6 @@
     </div>
   </section>
 
-  <section id="projects">
-    <div class="container">
-      <h2 class="en-only" style="margin-bottom: 60px;" data-aos="fade-right">💻 Project Details</h2>
-      <h2 class="my-only" style="margin-bottom: 60px;" data-aos="fade-right">💻 ပရောဂျက်အသေးစိတ်</h2>
-      
-      <div class="glass-card" style="margin-bottom: 40px;" data-aos="fade-up">
-        <h3 class="en-only">New Life POS System</h3>
-        <h3 class="my-only">New Life POS စနစ်</h3>
-        <p class="en-only" style="margin: 20px 0; color: #aaa;">Inventory, Sales, and Role-based POS system built using HTML, JavaScript, and localStorage. Designed for plastic bottle distribution business.</p>
-        <p class="my-only" style="margin: 20px 0; color: #aaa;">Inventory, Sales, နှင့် Role-based POS system ကို HTML, JavaScript, နှင့် localStorage အသုံးပြု၍ တည်ဆောက်ထားသည်။ ပလတ်စတစ်ပုလင်းဖြန့်ဖြူးရေးလုပ်ငန်းအတွက် ရည်ရွယ်သည်။</p>
-        <a href="https://new-life-bottles-pos.vercel.app/" target="_blank">
-          <button class="btn-primary">
-            <span class="en-only">🚀 Launch System</span>
-            <span class="my-only">🚀 စနစ်ကိုဖွင့်မည်</span>
-          </button>
-        </a>
-      </div>
-
-      <div class="glass-card" data-aos="fade-up">
-        <h3 class="en-only">Laravel E-Commerce Platform</h3>
-        <h3 class="my-only">Laravel E-Commerce ပလက်ဖောင်း</h3>
-        <p class="en-only" style="margin: 20px 0; color: #aaa;">Developed an online store with product filtering, cart, order history, and admin dashboard using PHP (Laravel) and MySQL.</p>
-        <p class="my-only" style="margin: 20px 0; color: #aaa;">PHP (Laravel) နှင့် MySQL ကိုအသုံးပြု၍ product filtering, cart, order history နှင့် admin dashboard တို့ပါဝင်သော online store တစ်ခုကို တည်ဆောက်ခဲ့သည်။</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="blog">
-    <div class="container">
-      <h2 class="en-only" style="margin-bottom: 60px;" data-aos="fade-left">📝 Insights & Stories</h2>
-      <h2 class="my-only" style="margin-bottom: 60px;" data-aos="fade-left">📝 ဘလော့ဂ်ကဏ္ဍ</h2>
-      
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-        <div class="glass-card" data-aos="zoom-in">
-          <h3 class="en-only">How I Built a POS System Using Only HTML/JS</h3>
-          <h3 class="my-only">HTML/JS သက်သက်ဖြင့် POS System တစ်ခုကို ကျွန်ုပ်မည်သို့တည်ဆောက်ခဲ့သလဲ</h3>
-          <p class="en-only" style="margin-top: 15px; color: #888;">The story behind creating a fast, offline-ready POS system for a family business in Myanmar.</p>
-          <p class="my-only" style="margin-top: 15px; color: #888;">မြန်မာနိုင်ငံရှိ ကျွန်ုပ်၏မိသားစုလုပ်ငန်းအတွက် မြန်ဆန်ပြီး offline အသုံးပြုနိုင်သော POS system တစ်ခုကို ဖန်တီးခဲ့ပုံ။</p>
-        </div>
-        <div class="glass-card" data-aos="zoom-in" data-aos-delay="100">
-          <h3 class="en-only">Laravel Tips for Beginners</h3>
-          <h3 class="my-only">အစပြုသူများအတွက် Laravel အကြံပြုချက်များ</h3>
-          <p class="en-only" style="margin-top: 15px; color: #888;">Simple tricks to make your Laravel projects cleaner, faster, and easier to maintain.</p>
-          <p class="my-only" style="margin-top: 15px; color: #888;">သင်၏ Laravel project များကို ပိုမိုသန့်ရှင်း၊ မြန်ဆန်စေရန် ရိုးရှင်းသော နည်းလမ်းများ။</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <footer>
     <div class="container">
       <div class="contact-form" data-aos="fade-up">
@@ -439,7 +451,7 @@
           <input type="email" name="email" id="input-email" class="form-input" placeholder="Your Email" required />
           <textarea name="message" id="input-message" class="form-input" rows="5" placeholder="Your Message" required></textarea>
           <div style="text-align: center;">
-            <button type="submit" class="btn-primary">
+            <button type="submit" class="btn-primary" style="padding: 14px 32px;">
               <span class="en-only">Send Message</span>
               <span class="my-only">မက်ဆေ့ချ်ပို့ရန်</span>
             </button>
