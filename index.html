@@ -256,7 +256,11 @@
     </select>
   </div>
 
-  <h1 class="neon-title">Rhyzoe</h1>
+  <h1 class="neon-title">
+    <span class="en-only">Rhyzoe’s Portfolio</span>
+    <span class="my-only">Rhyzoe ၏ ပေါ်တိုဖိုလီယို</span>
+  </h1>
+  
   <p class="en-only">Multidisciplinary Developer & Creative Professional</p>
   <p class="my-only">Multidisciplinary Developer & Creative Professional</p>
   
@@ -318,7 +322,8 @@
     <h2 class="en-only">💻 Project Details</h2>
     <h2 class="my-only">💻 ပရောဂျက်အသေးစိတ်</h2>
     <div class="project">
-      <h3>New Life POS System</h3>
+      <h3 class="en-only">New Life POS System</h3>
+      <h3 class="my-only">New Life POS စနစ်</h3>
       <p class="en-only">Inventory, Sales, and Role-based POS system built using HTML, JavaScript, and localStorage. Designed for plastic bottle distribution business.</p>
       <p class="my-only">Inventory, Sales, နှင့် Role-based POS system ကို HTML, JavaScript, နှင့် localStorage အသုံးပြု၍ တည်ဆောက်ထားသည်။ ပလတ်စတစ်ပုလင်းဖြန့်ဖြူးရေးလုပ်ငန်းအတွက် ရည်ရွယ်သည်။</p>
       <div style="margin-top: 30px;">
@@ -337,13 +342,14 @@
             transition: 0.3s ease-in-out;
           " onmouseover="this.style.boxShadow='0 0 15px #00ffaa, 0 0 30px #0055ff'" onmouseout="this.style.boxShadow='0 0 10px #00ffaa, 0 0 20px #0055ff'">
             <span class="en-only">🚀 Launch POS System</span>
-            <span class="my-only">🚀 POS System ကိုဖွင့်မည်</span>
+            <span class="my-only">🚀 POS စနစ်ကိုဖွင့်မည်</span>
           </button>
         </a>
       </div>
     </div>
     <div class="project">
-      <h3>Laravel E-Commerce Platform</h3>
+      <h3 class="en-only">Laravel E-Commerce Platform</h3>
+      <h3 class="my-only">Laravel E-Commerce ပလက်ဖောင်း</h3>
       <p class="en-only">Developed an online store with product filtering, cart, order history, and admin dashboard using PHP (Laravel) and MySQL.</p>
       <p class="my-only">PHP (Laravel) နှင့် MySQL ကိုအသုံးပြု၍ product filtering, cart, order history နှင့် admin dashboard တို့ပါဝင်သော online store တစ်ခုကို တည်ဆောက်ခဲ့သည်။</p>
     </div>
@@ -383,13 +389,19 @@
   ">💬</button>
 
   <div id="channelBox">
-    <h1 class="neon-rhyzoe">Rhyzoe Channel</h1>
+    <h1 class="neon-rhyzoe">
+      <span class="en-only">Rhyzoe Channel</span>
+      <span class="my-only">Rhyzoe ချန်နယ်</span>
+    </h1>
     <iframe style="border-radius:12px; width:100%; height:160px; margin-bottom: 20px;"
       src="https://www.youtube.com/embed/VVFvYvGhfnA"
       frameborder="0" allowfullscreen loading="lazy">
     </iframe>
 
-    <h1 class="neon-zayat">Zayat Vibes Channel</h1>
+    <h1 class="neon-zayat">
+      <span class="en-only">Zayat Vibes Channel</span>
+      <span class="my-only">Zayat Vibes ချန်နယ်</span>
+    </h1>
     <iframe style="border-radius:12px; width:100%; height:160px; margin-bottom: 20px;"
       src="https://www.youtube.com/embed/j8aW1MmTeYY"
       frameborder="0" allowfullscreen loading="lazy">
@@ -402,7 +414,12 @@
       </h2>
       <ul style="font-size: 0.95rem; padding-left: 18px;">
         <li><a href="https://github.com/theimhtikesoe" target="_blank">💻 GitHub</a></li>
-        <li><a href="mailto:hlah3894@gmail.com">📧 Email Me</a></li>
+        <li>
+          <a href="mailto:hlah3894@gmail.com">
+            <span class="en-only">📧 Email Me</span>
+            <span class="my-only">📧 အီးမေးလ်ပို့ရန်</span>
+          </a>
+        </li>
         <li><a href="https://music.apple.com/us/artist/rhyzoe/1585617412" target="_blank">🎵 Apple Music</a></li>
         <li><a href="https://open.spotify.com/artist/6nyd1OiXag3LVVhASA1HQ9" target="_blank">🎶 Spotify</a></li>
         <li><a href="https://web.facebook.com/mgrhyzoe.theinhtikesoe" target="_blank">👤 Facebook</a></li>
@@ -419,9 +436,9 @@
         <span class="my-only">📬 ဆက်သွယ်ရန်</span>
       </h2>
       <form action="https://formspree.io/f/mzzzbaky" method="POST" onsubmit="showSentMessage(event)">
-        <input type="text" name="name" placeholder="Your Name / သင့်အမည်" required />
-        <input type="email" name="email" placeholder="Your Email / သင့်အီးမေးလ်" required />
-        <textarea name="message" rows="4" placeholder="Your Message / သင့်မက်ဆေ့ချ်" required></textarea>
+        <input type="text" name="name" id="input-name" placeholder="Your Name" required />
+        <input type="email" name="email" id="input-email" placeholder="Your Email" required />
+        <textarea name="message" id="input-message" rows="4" placeholder="Your Message" required></textarea>
         <button type="submit">
           <span class="en-only">Send Message</span>
           <span class="my-only">မက်ဆေ့ချ်ပို့ရန်</span>
@@ -434,14 +451,30 @@
     function changeLanguage(lang) {
       document.body.setAttribute('data-lang', lang);
       localStorage.setItem('preferred-lang', lang);
+      updatePlaceholders(lang);
+    }
+
+    function updatePlaceholders(lang) {
+      const nameInput = document.getElementById('input-name');
+      const emailInput = document.getElementById('input-email');
+      const messageInput = document.getElementById('input-message');
+      
+      if (lang === 'my') {
+        nameInput.placeholder = 'သင့်အမည်';
+        emailInput.placeholder = 'သင့်အီးမေးလ်';
+        messageInput.placeholder = 'သင့်မက်ဆေ့ချ်';
+      } else {
+        nameInput.placeholder = 'Your Name';
+        emailInput.placeholder = 'Your Email';
+        messageInput.placeholder = 'Your Message';
+      }
     }
 
     window.onload = () => {
-      const savedLang = localStorage.getItem('preferred-lang');
-      if (savedLang) {
-        document.body.setAttribute('data-lang', savedLang);
-        document.querySelector('.lang-toggle select').value = savedLang;
-      }
+      const savedLang = localStorage.getItem('preferred-lang') || 'en';
+      document.body.setAttribute('data-lang', savedLang);
+      document.querySelector('.lang-toggle select').value = savedLang;
+      updatePlaceholders(savedLang);
     };
 
     function toggleChatBox() {
