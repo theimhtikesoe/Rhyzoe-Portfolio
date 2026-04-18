@@ -138,13 +138,6 @@
       max-width: 700px;
       width: 100%;
     }
-    .action-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-      max-width: 700px;
-    }
     input, textarea {
       width: 100%;
       padding: 10px;
@@ -242,7 +235,7 @@
     }
 
     /* Language-specific display */
-    [lang="my"] .en-only, [lang="en"] .my-only {
+    [data-lang="my"] .en-only, [data-lang="en"] .my-only {
       display: none;
     }
   </style>
@@ -267,12 +260,12 @@
   <p class="en-only">Multidisciplinary Developer & Creative Professional</p>
   <p class="my-only">Multidisciplinary Developer & Creative Professional</p>
   
-  <p class="en-only">"I build systems and stories — with code, beats, and soul."</p>
-  <p class="my-only">"အယူအဆများကို လက်တွေ့အသုံးချနိုင်သော System များနှင့် Scalable Output များအဖြစ် ပြောင်းလဲတည်ဆောက်သူ။"</p>
-
+  <p class="en-only">Click the button to view more about me</p>
+  <p class="my-only">ကျွန်ုပ်အကြောင်း ပိုမိုသိရှိရန် ခလုတ်ကိုနှိပ်ပါ</p>
+  
   <button onclick="toggleInfo()">
-    <span class="en-only">Show Bio</span>
-    <span class="my-only">ကိုယ်ရေးအကျဉ်း</span>
+    <span class="en-only">Show Info</span>
+    <span class="my-only">အချက်အလက်များကို ကြည့်မည်</span>
   </button>
 
   <div id="infoBox">
@@ -290,38 +283,34 @@
     </div>
   </div>
 
-  <blockquote class="quote-cloud en-only">
-    “I build systems and stories — with code, beats, and soul.”
-  </blockquote>
-  <blockquote class="quote-cloud my-only">
-    “I build systems and stories — with code, beats, and soul.”
+  <blockquote class="quote-cloud">
+    <span class="en-only">“I build systems and stories — with code, beats, and soul.”</span>
+    <span class="my-only">“အယူအဆများကို လက်တွေ့အသုံးချနိုင်သော System များနှင့် Scalable Output များအဖြစ် ပြောင်းလဲတည်ဆောက်သူ။”</span>
   </blockquote>
 
   <section id="execution">
     <h2 class="en-only">⚡ Execution Strategy</h2>
     <h2 class="my-only">⚡ လုပ်ငန်းစဉ် မဟာဗျူဟာ</h2>
     
-    <div class="action-grid">
-      <div class="action-card">
-        <h3 class="en-only">Workflow & Automation</h3>
-        <h3 class="my-only">Workflow & Automation</h3>
-        <p class="en-only">Building systematic workflows. Integrating modern tools. Improving efficiency through automation.</p>
-        <p class="my-only">Workflow များကို စနစ်တကျ တည်ဆောက်ခြင်း။ Modern Tools များကို ပေါင်းစပ်အသုံးချခြင်း။ Automation များဖြင့် လုပ်ငန်းစဉ်များကို ထိရောက်အောင် ပြုပြင်တိုးတက်စေခြင်း။</p>
-      </div>
-      
-      <div class="action-card">
-        <h3 class="en-only">Tech & Art Intersection</h3>
-        <h3 class="my-only">Tech & Art Intersection</h3>
-        <p class="en-only">Integrating music and creative direction into product design and development to create solutions with both functionality and cultural relevance.</p>
-        <p class="my-only">ဂီတနှင့် Creative Direction အမြင်များကို Product Design & Development တွင် ထည့်သွင်းစဉ်းစားပြီး Functionality နှင့် Cultural Relevance နှစ်ခုလုံး ပါဝင်သော Solution များကို ဖန်တီးခြင်း။</p>
-      </div>
-      
-      <div class="action-card">
-        <h3 class="en-only">Performance & Growth</h3>
-        <h3 class="my-only">Performance & Growth</h3>
-        <p class="en-only">Clear and focused systems—analyzing opportunities, building effective solutions, and continuously improving based on performance.</p>
-        <p class="my-only">ရှင်းလင်းပြီး အာရုံစိုက်မှုရှိသော စနစ်—အခွင့်အလမ်းများကို ခွဲခြမ်းစိတ်ဖြာခြင်း၊ ထိရောက်သော Solution များကို တည်ဆောက်ခြင်းနှင့် Performance အပေါ်အခြေခံကာ တိုးတက်အောင် ဆက်လက်ပြုပြင်ခြင်း။</p>
-      </div>
+    <div class="action-card">
+      <h3 class="en-only">Workflow & Automation</h3>
+      <h3 class="my-only">Workflow & Automation</h3>
+      <p class="en-only">Building systematic workflows. Integrating modern tools. Improving efficiency through automation.</p>
+      <p class="my-only">Workflow များကို စနစ်တကျ တည်ဆောက်ခြင်း။ Modern Tools များကို ပေါင်းစပ်အသုံးချခြင်း။ Automation များဖြင့် လုပ်ငန်းစဉ်များကို ထိရောက်အောင် ပြုပြင်တိုးတက်စေခြင်း။</p>
+    </div>
+    
+    <div class="action-card">
+      <h3 class="en-only">Tech & Art Intersection</h3>
+      <h3 class="my-only">Tech & Art Intersection</h3>
+      <p class="en-only">Integrating music and creative direction into product design and development to create solutions with both functionality and cultural relevance.</p>
+      <p class="my-only">ဂီတနှင့် Creative Direction အမြင်များကို Product Design & Development တွင် ထည့်သွင်းစဉ်းစားပြီး Functionality နှင့် Cultural Relevance နှစ်ခုလုံး ပါဝင်သော Solution များကို ဖန်တီးခြင်း။</p>
+    </div>
+    
+    <div class="action-card">
+      <h3 class="en-only">Performance & Growth</h3>
+      <h3 class="my-only">Performance & Growth</h3>
+      <p class="en-only">Clear and focused systems—analyzing opportunities, building effective solutions, and continuously improving based on performance.</p>
+      <p class="my-only">ရှင်းလင်းပြီး အာရုံစိုက်မှုရှိသော စနစ်—အခွင့်အလမ်းများကို ခွဲခြမ်းစိတ်ဖြာခြင်း၊ ထိရောက်သော Solution များကို တည်ဆောက်ခြင်းနှင့် Performance အပေါ်အခြေခံကာ တိုးတက်အောင် ဆက်လက်ပြုပြင်ခြင်း။</p>
     </div>
   </section>
 
@@ -444,11 +433,9 @@
   <script>
     function changeLanguage(lang) {
       document.body.setAttribute('data-lang', lang);
-      // Optional: Save preference to localStorage
       localStorage.setItem('preferred-lang', lang);
     }
 
-    // Load saved language preference
     window.onload = () => {
       const savedLang = localStorage.getItem('preferred-lang');
       if (savedLang) {
