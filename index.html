@@ -15,16 +15,17 @@
         line-height: 2.2rem;
         padding: 0 10px;
       }
-      .theme-toggle {
+      .theme-toggle, .lang-toggle {
         top: 10px;
-        left: 10px;
         transform: scale(0.9);
       }
+      .theme-toggle { left: 10px; }
+      .lang-toggle { right: 10px; }
       .quote-cloud {
         font-size: 0.9rem;
         padding: 8px 12px;
       }
-      .project, .blog-post, #infoBox {
+      .project, .blog-post, #infoBox, .action-card {
         padding: 15px;
         font-size: 0.95rem;
       }
@@ -105,7 +106,13 @@
       left: 20px;
       z-index: 10;
     }
-    .theme-toggle select {
+    .lang-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+    }
+    .theme-toggle select, .lang-toggle select {
       padding: 6px 12px;
       border-radius: 10px;
       background: var(--accent-color);
@@ -123,13 +130,20 @@
       max-width: 600px;
       text-shadow: 0 0 5px var(--accent-color);
     }
-    .project, .blog-post {
+    .project, .blog-post, .action-card {
       background: #1c1c1c;
       padding: 20px;
       margin: 15px 0;
       border-radius: 10px;
       max-width: 700px;
       width: 100%;
+    }
+    .action-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 700px;
     }
     input, textarea {
       width: 100%;
@@ -200,35 +214,40 @@
       transition: opacity 0.4s ease;
     }
     #channelBox {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 95vw;
-  max-width: 380px;
-  max-height: 80vh; /* make sure it doesn't overflow the screen */
-  background: rgba(15, 15, 15, 0.95);
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.8);
-  padding: 15px;
-  overflow-y: auto;
-  z-index: 99;
-  transform: translateY(100%);
-  opacity: 0;
-  transition: all 0.4s ease;
-}
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 95vw;
+      max-width: 380px;
+      max-height: 80vh;
+      background: rgba(15, 15, 15, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+      padding: 15px;
+      overflow-y: auto;
+      z-index: 99;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
 
-#channelBox.active {
-  transform: translateY(0);
-  opacity: 1;
-}
+    #channelBox.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Language-specific display */
+    [lang="my"] .en-only, [lang="en"] .my-only {
+      display: none;
+    }
   </style>
 </head>
-<body>
+<body data-lang="en">
   <div class="theme-toggle">
     <select onchange="document.body.setAttribute('data-theme', this.value)">
       <option value="">Dark</option>
@@ -237,28 +256,82 @@
     </select>
   </div>
 
- 
-
-  <h1 class="neon-title">Rhyzoe’s Portfolio</h1>
-  <p>Click the button to view more about me</p>
-  <button onclick="toggleInfo()">Show Info</button>
-
-  <div id="infoBox">
-    <h3>👤 About Me</h3>
-    <p>I'm Theim Htike Soe (aka Rhyzoe), a creative technologist and customer service professional from Myanmar. Currently based in Bangkok, I specialize in blending web development, music, and branding into one soulful expression.</p>
-    <p>I hold a Bachelor's Degree in Computer Science from Computer University Taunggyi and completed a Diploma in Sales and Marketing at Lincoln University College in Malaysia. My final year thesis focused on building an e-commerce & POS system using Laravel & MySQL for a plastic bottle factory.</p>
-    <p>Professionally, I've worked as a freelance developer, bar staff, and sales assistant — mastering both backend logic and face-to-face communication. I’m fluent in Burmese and English, and conversational in Thai.</p>
-    <p>I thrive on hands-on learning, digital storytelling, and building systems that serve people — from POS setups and websites to rap verses and brand strategy.</p>
+  <div class="lang-toggle">
+    <select onchange="changeLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="my">မြန်မာ</option>
+    </select>
   </div>
 
-  <blockquote class="quote-cloud">
+  <h1 class="neon-title">Rhyzoe</h1>
+  <p class="en-only">Multidisciplinary Developer & Creative Professional</p>
+  <p class="my-only">Multidisciplinary Developer & Creative Professional</p>
+  
+  <p class="en-only">"I build systems and stories — with code, beats, and soul."</p>
+  <p class="my-only">"အယူအဆများကို လက်တွေ့အသုံးချနိုင်သော System များနှင့် Scalable Output များအဖြစ် ပြောင်းလဲတည်ဆောက်သူ။"</p>
+
+  <button onclick="toggleInfo()">
+    <span class="en-only">Show Bio</span>
+    <span class="my-only">ကိုယ်ရေးအကျဉ်း</span>
+  </button>
+
+  <div id="infoBox">
+    <h3 class="en-only">👤 About Me</h3>
+    <h3 class="my-only">👤 ကျွန်ုပ်အကြောင်း</h3>
+    
+    <div class="en-only">
+      <p>Rhyzoe is a Multidisciplinary Developer and Creative Professional who combines technology, music, and digital product creation. He specializes in transforming concepts into practical systems and scalable outputs.</p>
+      <p>He values practical utility over pure theory, rapid prototyping, and continuous improvement. With a forward-looking mindset, he continues to build valuable and revenue-generating digital products using technology and creativity.</p>
+    </div>
+    
+    <div class="my-only">
+      <p>Rhyzoe သည် နည်းပညာ၊ ဂီတနှင့် ဒစ်ဂျစ်တယ်ထုတ်ကုန်ဖန်တီးမှုတို့ကို ပေါင်းစပ်လုပ်ကိုင်နိုင်သော Multidisciplinary Developer နှင့် Creative Professional တစ်ဦးဖြစ်သည်။ အယူအဆ (Concepts) များကို လက်တွေ့အသုံးချနိုင်သော System များနှင့် Scalable Output များအဖြစ် ပြောင်းလဲတည်ဆောက်ရာတွင် အထူးကျွမ်းကျင်သည်။</p>
+      <p>သီအိုရီသက်သက်ထက် လက်တွေ့အကျိုးရှိမှု၊ အမြန်စမ်းသပ်ပြုပြင်နိုင်မှု (Rapid Prototyping) နှင့် အဆက်မပြတ် တိုးတက်မှုကို ပိုမိုတန်ဖိုးထားသည်။ အနာဂတ်ကို မျှော်မှန်းသော Mindset ဖြင့် နည်းပညာနှင့် ဖန်တီးမှုကို အသုံးချကာ တန်ဖိုးရှိပြီး ဝင်ငွေဖန်တီးနိုင်သော Digital Products များကို ဆက်လက် တည်ဆောက်နေသည်။</p>
+    </div>
+  </div>
+
+  <blockquote class="quote-cloud en-only">
     “I build systems and stories — with code, beats, and soul.”
   </blockquote>
+  <blockquote class="quote-cloud my-only">
+    “I build systems and stories — with code, beats, and soul.”
+  </blockquote>
+
+  <section id="execution">
+    <h2 class="en-only">⚡ Execution Strategy</h2>
+    <h2 class="my-only">⚡ လုပ်ငန်းစဉ် မဟာဗျူဟာ</h2>
+    
+    <div class="action-grid">
+      <div class="action-card">
+        <h3 class="en-only">Workflow & Automation</h3>
+        <h3 class="my-only">Workflow & Automation</h3>
+        <p class="en-only">Building systematic workflows. Integrating modern tools. Improving efficiency through automation.</p>
+        <p class="my-only">Workflow များကို စနစ်တကျ တည်ဆောက်ခြင်း။ Modern Tools များကို ပေါင်းစပ်အသုံးချခြင်း။ Automation များဖြင့် လုပ်ငန်းစဉ်များကို ထိရောက်အောင် ပြုပြင်တိုးတက်စေခြင်း။</p>
+      </div>
+      
+      <div class="action-card">
+        <h3 class="en-only">Tech & Art Intersection</h3>
+        <h3 class="my-only">Tech & Art Intersection</h3>
+        <p class="en-only">Integrating music and creative direction into product design and development to create solutions with both functionality and cultural relevance.</p>
+        <p class="my-only">ဂီတနှင့် Creative Direction အမြင်များကို Product Design & Development တွင် ထည့်သွင်းစဉ်းစားပြီး Functionality နှင့် Cultural Relevance နှစ်ခုလုံး ပါဝင်သော Solution များကို ဖန်တီးခြင်း။</p>
+      </div>
+      
+      <div class="action-card">
+        <h3 class="en-only">Performance & Growth</h3>
+        <h3 class="my-only">Performance & Growth</h3>
+        <p class="en-only">Clear and focused systems—analyzing opportunities, building effective solutions, and continuously improving based on performance.</p>
+        <p class="my-only">ရှင်းလင်းပြီး အာရုံစိုက်မှုရှိသော စနစ်—အခွင့်အလမ်းများကို ခွဲခြမ်းစိတ်ဖြာခြင်း၊ ထိရောက်သော Solution များကို တည်ဆောက်ခြင်းနှင့် Performance အပေါ်အခြေခံကာ တိုးတက်အောင် ဆက်လက်ပြုပြင်ခြင်း။</p>
+      </div>
+    </div>
+  </section>
+
   <section id="projects">
-    <h2>💻 Project Details</h2>
+    <h2 class="en-only">💻 Project Details</h2>
+    <h2 class="my-only">💻 ပရောဂျက်အသေးစိတ်</h2>
     <div class="project">
       <h3>New Life POS System</h3>
-      <p>Inventory, Sales, and Role-based POS system built using HTML, JavaScript, and localStorage. Designed for plastic bottle distribution business.</p>
+      <p class="en-only">Inventory, Sales, and Role-based POS system built using HTML, JavaScript, and localStorage. Designed for plastic bottle distribution business.</p>
+      <p class="my-only">Inventory, Sales, နှင့် Role-based POS system ကို HTML, JavaScript, နှင့် localStorage အသုံးပြု၍ တည်ဆောက်ထားသည်။ ပလတ်စတစ်ပုလင်းဖြန့်ဖြူးရေးလုပ်ငန်းအတွက် ရည်ရွယ်သည်။</p>
       <div style="margin-top: 30px;">
         <a href="https://new-life-bottles-pos.vercel.app/" target="_blank">
           <button style="
@@ -274,95 +347,123 @@
             cursor: pointer;
             transition: 0.3s ease-in-out;
           " onmouseover="this.style.boxShadow='0 0 15px #00ffaa, 0 0 30px #0055ff'" onmouseout="this.style.boxShadow='0 0 10px #00ffaa, 0 0 20px #0055ff'">
-            🚀 Launch POS System
+            <span class="en-only">🚀 Launch POS System</span>
+            <span class="my-only">🚀 POS System ကိုဖွင့်မည်</span>
           </button>
         </a>
       </div>
-          </div>
+    </div>
     <div class="project">
       <h3>Laravel E-Commerce Platform</h3>
-      <p>Developed an online store with product filtering, cart, order history, and admin dashboard using PHP (Laravel) and MySQL.</p>
+      <p class="en-only">Developed an online store with product filtering, cart, order history, and admin dashboard using PHP (Laravel) and MySQL.</p>
+      <p class="my-only">PHP (Laravel) နှင့် MySQL ကိုအသုံးပြု၍ product filtering, cart, order history နှင့် admin dashboard တို့ပါဝင်သော online store တစ်ခုကို တည်ဆောက်ခဲ့သည်။</p>
     </div>
   </section>
 
- 
-<section id="blog">
-  <h2>📝 Blog Section</h2>
-  <div class="blog-post">
-    <h3>How I Built a POS System Using Only HTML/JS</h3>
-    <p>I wanted to create a fast, offline-ready POS system for my family business in Myanmar. Here's the story behind it...</p>
+  <section id="blog">
+    <h2 class="en-only">📝 Blog Section</h2>
+    <h2 class="my-only">📝 ဘလော့ဂ်ကဏ္ဍ</h2>
+    <div class="blog-post">
+      <h3 class="en-only">How I Built a POS System Using Only HTML/JS</h3>
+      <h3 class="my-only">HTML/JS သက်သက်ဖြင့် POS System တစ်ခုကို ကျွန်ုပ်မည်သို့တည်ဆောက်ခဲ့သလဲ</h3>
+      <p class="en-only">I wanted to create a fast, offline-ready POS system for my family business in Myanmar. Here's the story behind it...</p>
+      <p class="my-only">မြန်မာနိုင်ငံရှိ ကျွန်ုပ်၏မိသားစုလုပ်ငန်းအတွက် မြန်ဆန်ပြီး offline အသုံးပြုနိုင်သော POS system တစ်ခုကို ဖန်တီးချင်ခဲ့သည်။ ၎င်း၏နောက်ကွယ်မှ အကြောင်းအရာမှာ...</p>
+    </div>
+    <div class="blog-post">
+      <h3 class="en-only">Laravel Tips for Beginners</h3>
+      <h3 class="my-only">အစပြုသူများအတွက် Laravel အကြံပြုချက်များ</h3>
+      <p class="en-only">Simple tricks to make your Laravel projects cleaner, faster, and easier to maintain. Especially helpful for new devs coming from PHP background.</p>
+      <p class="my-only">သင်၏ Laravel project များကို ပိုမိုသန့်ရှင်း၊ မြန်ဆန်ပြီး ထိန်းသိမ်းရလွယ်ကူစေရန် ရိုးရှင်းသော နည်းလမ်းများ။ PHP background မှလာသော dev အသစ်များအတွက် အထူးအထောက်အကူပြုသည်။</p>
+    </div>
+  </section>
+
+  <button id="chatToggleBtn" onclick="toggleChatBox()" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    box-shadow: 0 0 15px var(--accent-color);
+    cursor: pointer;
+    z-index: 100;
+  ">💬</button>
+
+  <div id="channelBox">
+    <h1 class="neon-rhyzoe">Rhyzoe Channel</h1>
+    <iframe style="border-radius:12px; width:100%; height:160px; margin-bottom: 20px;"
+      src="https://www.youtube.com/embed/VVFvYvGhfnA"
+      frameborder="0" allowfullscreen loading="lazy">
+    </iframe>
+
+    <h1 class="neon-zayat">Zayat Vibes Channel</h1>
+    <iframe style="border-radius:12px; width:100%; height:160px; margin-bottom: 20px;"
+      src="https://www.youtube.com/embed/j8aW1MmTeYY"
+      frameborder="0" allowfullscreen loading="lazy">
+    </iframe>
+
+    <div class="social-links" style="background: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 12px;">
+      <h2 style="font-size: 1rem;">
+        <span class="en-only">🌐 Connect With Me</span>
+        <span class="my-only">🌐 ကျွန်ုပ်နှင့် ဆက်သွယ်ရန်</span>
+      </h2>
+      <ul style="font-size: 0.95rem; padding-left: 18px;">
+        <li><a href="https://github.com/theimhtikesoe" target="_blank">💻 GitHub</a></li>
+        <li><a href="mailto:hlah3894@gmail.com">📧 Email Me</a></li>
+        <li><a href="https://music.apple.com/us/artist/rhyzoe/1585617412" target="_blank">🎵 Apple Music</a></li>
+        <li><a href="https://open.spotify.com/artist/6nyd1OiXag3LVVhASA1HQ9" target="_blank">🎶 Spotify</a></li>
+        <li><a href="https://web.facebook.com/mgrhyzoe.theinhtikesoe" target="_blank">👤 Facebook</a></li>
+        <li><a href="https://line.me/ti/p/~mgrhyzoe" target="_blank">💬 LINE</a></li>
+        <li><a href="https://www.instagram.com/mgrhyzoe" target="_blank">📷 Instagram</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="blog-post">
-    <h3>Laravel Tips for Beginners</h3>
-    <p>Simple tricks to make your Laravel projects cleaner, faster, and easier to maintain. Especially helpful for new devs coming from PHP background.</p>
-  </div>
-</section> 
 
-
-
-
-<!-- 🔘 Floating Open Button -->
-<button id="chatToggleBtn" onclick="toggleChatBox()" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 1.5rem;
-  box-shadow: 0 0 15px var(--accent-color);
-  cursor: pointer;
-  z-index: 100;
-">💬</button>
-
-<!-- 💬 Floating Chat-style Notification Box -->
-<div id="channelBox">
-
-
-
-  <!-- Content Starts -->
-  <h1 class="neon-rhyzoe">Rhyzoe Channel</h1>
-  <iframe style="border-radius:12px; width:100%; height:160px; margin-bottom: 20px;"
-    src="https://www.youtube.com/embed/VVFvYvGhfnA"
-    frameborder="0" allowfullscreen loading="lazy">
-  </iframe>
-
-  <h1 class="neon-zayat">Zayat Vibes Channel</h1>
-  <iframe style="border-radius:12px; width:100%; height:160px; margin-bottom: 20px;"
-    src="https://www.youtube.com/embed/j8aW1MmTeYY"
-    frameborder="0" allowfullscreen loading="lazy">
-  </iframe>
-
-  <div class="social-links" style="background: rgba(0, 0, 0, 0.6); padding: 15px; border-radius: 12px;">
-    <h2 style="font-size: 1rem;">🌐 Connect With Me</h2>
-    <ul style="font-size: 0.95rem; padding-left: 18px;">
-      <li><a href="https://github.com/theimhtikesoe" target="_blank">💻 GitHub</a></li>
-      <li><a href="mailto:hlah3894@gmail.com">📧 Email Me</a></li>
-      <li><a href="https://music.apple.com/us/artist/rhyzoe/1585617412" target="_blank">🎵 Apple Music</a></li>
-      <li><a href="https://open.spotify.com/artist/6nyd1OiXag3LVVhASA1HQ9" target="_blank">🎶 Spotify</a></li>
-      <li><a href="https://web.facebook.com/mgrhyzoe.theinhtikesoe" target="_blank">👤 Facebook</a></li>
-      <li><a href="https://line.me/ti/p/~mgrhyzoe" target="_blank">💬 LINE</a></li>
-      <li><a href="https://www.instagram.com/mgrhyzoe" target="_blank">📷 Instagram</a></li>
-    </ul>
-  </div>
-</div>
-
-  
-  
-
+  <footer style="margin-top: 80px; padding: 40px 20px; width: 100%; background: #1c1c1c; text-align: center;">
+    <section id="contact" style="max-width: 700px; margin: 0 auto;">
+      <h2 style="color: var(--accent-color); font-size: 1.8rem; margin-bottom: 20px;">
+        <span class="en-only">📬 Contact Me</span>
+        <span class="my-only">📬 ဆက်သွယ်ရန်</span>
+      </h2>
+      <form action="https://formspree.io/f/mzzzbaky" method="POST" onsubmit="showSentMessage(event)">
+        <input type="text" name="name" placeholder="Your Name / သင့်အမည်" required />
+        <input type="email" name="email" placeholder="Your Email / သင့်အီးမေးလ်" required />
+        <textarea name="message" rows="4" placeholder="Your Message / သင့်မက်ဆေ့ချ်" required></textarea>
+        <button type="submit">
+          <span class="en-only">Send Message</span>
+          <span class="my-only">မက်ဆေ့ချ်ပို့ရန်</span>
+        </button>
+      </form>
+    </section>
+  </footer>
 
   <script>
-  function toggleChatBox() {
-  const box = document.getElementById("channelBox");
-  const btn = document.getElementById("chatToggleBtn");
-  box.classList.toggle("active");
-  const isVisible = box.classList.contains("active");
-  btn.innerHTML = isVisible ? "×" : "💬";
-}
+    function changeLanguage(lang) {
+      document.body.setAttribute('data-lang', lang);
+      // Optional: Save preference to localStorage
+      localStorage.setItem('preferred-lang', lang);
+    }
 
+    // Load saved language preference
+    window.onload = () => {
+      const savedLang = localStorage.getItem('preferred-lang');
+      if (savedLang) {
+        document.body.setAttribute('data-lang', savedLang);
+        document.querySelector('.lang-toggle select').value = savedLang;
+      }
+    };
+
+    function toggleChatBox() {
+      const box = document.getElementById("channelBox");
+      const btn = document.getElementById("chatToggleBtn");
+      box.classList.toggle("active");
+      const isVisible = box.classList.contains("active");
+      btn.innerHTML = isVisible ? "×" : "💬";
+    }
 
     function toggleInfo() {
       const box = document.getElementById("infoBox");
@@ -374,43 +475,28 @@
         setTimeout(() => { box.style.opacity = "1"; }, 10);
       }
     }
+
     function showSentMessage(e) {
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const lang = document.body.getAttribute('data-lang');
 
-  fetch(form.action, {
-    method: 'POST',
-    body: data,
-    headers: {
-      'Accept': 'application/json'
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          alert(lang === 'my' ? "✅ မက်ဆေ့ချ်ပို့ပြီးပါပြီ။ မကြာမီ ပြန်လည်ဆက်သွယ်ပါမည်။" : "✅ Message sent! I’ll get back to you soon.");
+          form.reset();
+        } else {
+          alert(lang === 'my' ? "❌ တစ်စုံတစ်ခု မှားယွင်းနေပါသည်။" : "❌ Oops, something went wrong.");
+        }
+      });
     }
-  }).then(response => {
-    if (response.ok) {
-      alert("✅ Message sent! I’ll get back to you soon.");
-      form.reset();
-    } else {
-      alert("❌ Oops, something went wrong.");
-    }
-  });
-}
-
-    
   </script>
 </body>
-  
-<footer style="margin-top: 80px; padding: 40px 20px; width: 100%; background: #1c1c1c; text-align: center;">
-  <section id="contact" style="max-width: 700px; margin: 0 auto;">
-    <h2 style="color: var(--accent-color); font-size: 1.8rem; margin-bottom: 20px;">📬 Contact Me</h2>
-<form action="https://formspree.io/f/mzzzbaky" method="POST" onsubmit="showSentMessage(event)">
-
-  <input type="text" name="name" placeholder="Your Name" required />
-  <input type="email" name="email" placeholder="Your Email" required />
-  <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
-  <button type="submit">Send Message</button>
-</form>
-
-  </section>
-</footer>
-  
 </html>
