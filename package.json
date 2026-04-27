@@ -1,0 +1,23 @@
+{
+  "name": "rhyzoe-portfolio",
+  "version": "1.0.0",
+  "description": "Welcome to the official portfolio repository of **Theim Htike Soe (aka Rhyzoe)**. This project serves as the digital nexus where technology, music, and creative direction intersect. It is designed to reflect a \"Dev x Artist\" identity, utilizing a cinematic, Neon-Noir aesthetic to showcase a diverse range of digital products and systems.",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theimhtikesoe/Rhyzoe-Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theimhtikesoe/Rhyzoe-Portfolio/issues"
+  },
+  "homepage": "https://github.com/theimhtikesoe/Rhyzoe-Portfolio#readme",
+  "dependencies": {
+    "resend": "^6.12.2"
+  }
+}
