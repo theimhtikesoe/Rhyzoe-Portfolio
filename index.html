@@ -304,6 +304,174 @@
       transform: translateY(0);
       pointer-events: all;
     }
+
+    /* Social Hub Styles */
+    .social-card {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 30px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .social-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .social-card[data-platform="facebook-personal"]:hover,
+    .social-card[data-platform="facebook-page"]:hover {
+      box-shadow: 0 0 40px rgba(24, 119, 242, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
+      border-color: rgba(24, 119, 242, 0.5);
+    }
+
+    .social-card[data-platform="line"]:hover {
+      box-shadow: 0 0 40px rgba(0, 185, 0, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
+      border-color: rgba(0, 185, 0, 0.5);
+    }
+
+    .social-card[data-platform="instagram"]:hover {
+      box-shadow: 0 0 40px rgba(228, 64, 95, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
+      border-color: rgba(228, 64, 95, 0.5);
+    }
+
+    .social-card[data-platform="spotify"]:hover {
+      box-shadow: 0 0 40px rgba(29, 185, 84, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
+      border-color: rgba(29, 185, 84, 0.5);
+    }
+
+    .social-card[data-platform="apple-music"]:hover {
+      box-shadow: 0 0 40px rgba(250, 36, 60, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
+      border-color: rgba(250, 36, 60, 0.5);
+    }
+
+    .social-card[data-platform="youtube-rhyzoe"]:hover,
+    .social-card[data-platform="youtube-zayat"]:hover {
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
+      border-color: rgba(255, 0, 0, 0.5);
+    }
+
+    .social-card-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+    }
+
+    .social-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .social-card:hover .social-icon {
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .social-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
+      color: #fff;
+    }
+
+    .social-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #aaa;
+      transition: color 0.3s ease;
+    }
+
+    .social-hover-text {
+      display: none;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      font-size: 0.95rem;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .social-card:hover .social-hover-text {
+      display: block;
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .social-card:focus-visible {
+      outline: 2px solid var(--accent-cyan);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .social-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+        gap: 20px !important;
+      }
+
+      .social-card {
+        min-height: 280px;
+        padding: 20px;
+      }
+
+      .social-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+
+      .social-card h3 {
+        font-size: 1rem;
+      }
+
+      .social-card p {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .social-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .social-card {
+        min-height: 240px;
+      }
+    }
   </style>
 </head>
 <body data-lang="en">
@@ -445,6 +613,126 @@
           <p class="en-only">Clear and focused systems—analyzing opportunities, building effective solutions, and continuously improving based on performance.</p>
           <p class="my-only">ရှင်းလင်းပြီး အာရုံစိုက်မှုရှိသော စနစ်—အခွင့်အလမ်းများကို ခွဲခြမ်းစိတ်ဖြာခြင်း၊ ထိရောက်သော Solution များကို တည်ဆောက်ခြင်းနှင့် Performance အပေါ်အခြေခံကာ တိုးတက်အောင် ဆက်လက်ပြုပြင်ခြင်း။</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Hub Section -->
+  <section id="social-hub" style="padding: 100px 0; background: linear-gradient(135deg, rgba(0, 245, 255, 0.05) 0%, rgba(176, 38, 255, 0.05) 100%);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 80px;" data-aos="fade-down">
+        <h2 class="en-only" style="color: var(--accent-cyan); margin-bottom: 20px;">🌐 Connect With Me Everywhere</h2>
+        <h2 class="my-only" style="color: var(--accent-cyan); margin-bottom: 20px;">🌐 ကျွန်ုပ်နှင့် အနှံ့အပြန် ဆက်သွယ်ရန်</h2>
+        <p class="en-only" style="color: #888; font-size: 1.1rem;">Follow my journey across multiple platforms</p>
+        <p class="my-only" style="color: #888; font-size: 1.1rem;">ကျွန်ုပ်၏ အဖြေများကို အမျိုးမျိုးသော platform များတွင် လိုက်နာပါ</p>
+      </div>
+
+      <div class="social-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+        
+        <!-- Facebook Personal -->
+        <a href="https://www.facebook.com/share/163Eysu3YX/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="facebook-personal" data-aos="fade-up" data-aos-delay="0">
+          <div class="social-card-inner">
+            <div class="social-icon" style="background: linear-gradient(135deg, #1877F2, #0A66C2); color: white; font-size: 2.5rem;">f</div>
+            <h3 class="en-only">Facebook Personal</h3>
+            <h3 class="my-only">ကျွန်ုပ်၏ Facebook</h3>
+            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Personal profile & updates</p>
+            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">ကျွန်ုပ်၏ အကောင့်နှင့် သတင်းများ</p>
+            <div class="social-hover-text en-only">Follow →</div>
+            <div class="social-hover-text my-only">လိုက်နာရန် →</div>
+          </div>
+        </a>
+
+        <!-- Facebook Page -->
+        <a href="https://www.facebook.com/share/1FvL5c8caz/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="facebook-page" data-aos="fade-up" data-aos-delay="100">
+          <div class="social-card-inner">
+            <div class="social-icon" style="background: linear-gradient(135deg, #1877F2, #0A66C2); color: white; font-size: 2.5rem;">📄</div>
+            <h3 class="en-only">Facebook Page</h3>
+            <h3 class="my-only">ကျွန်ုပ်၏ Page</h3>
+            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Official page & projects</p>
+            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">အရformal Page နှင့် ပရောဂျက်များ</p>
+            <div class="social-hover-text en-only">Follow →</div>
+            <div class="social-hover-text my-only">လိုက်နာရန် →</div>
+          </div>
+        </a>
+
+        <!-- LINE -->
+        <a href="https://line.me/ti/p/DaXybLSsSJ" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="line" data-aos="fade-up" data-aos-delay="200">
+          <div class="social-card-inner">
+            <div class="social-icon" style="background: linear-gradient(135deg, #00B900, #00D000); color: white; font-size: 2.5rem;">💬</div>
+            <h3 class="en-only">LINE</h3>
+            <h3 class="my-only">LINE</h3>
+            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Direct messaging & chat</p>
+            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">တစ်ဆင့်တည်း စာတိုက်ခြင်း</p>
+            <div class="social-hover-text en-only">Chat →</div>
+            <div class="social-hover-text my-only">စာတိုက်ရန် →</div>
+          </div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/mgrhyzoe" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="instagram" data-aos="fade-up" data-aos-delay="300">
+          <div class="social-card-inner">
+            <div class="social-icon" style="background: linear-gradient(135deg, #E4405F, #FD1D1D, #F77737); color: white; font-size: 2.5rem;">📷</div>
+            <h3 class="en-only">Instagram</h3>
+            <h3 class="my-only">Instagram</h3>
+            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Visual content & stories</p>
+            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">ရုပ်ပုံများနှင့် အကြောင်းအရာများ</p>
+            <div class="social-hover-text en-only">Follow →</div>
+            <div class="social-hover-text my-only">လိုက်နာရန် →</div>
+          </div>
+        </a>
+
+        <!-- Spotify -->
+        <a href="https://open.spotify.com/artist/6nyd1OiXag3LVVhASA1HQ9" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="spotify" data-aos="fade-up" data-aos-delay="400">
+          <div class="social-card-inner">
+            <div class="social-icon" style="background: linear-gradient(135deg, #1DB954, #1ed760); color: white; font-size: 2.5rem;">🎵</div>
+            <h3 class="en-only">Spotify</h3>
+            <h3 class="my-only">Spotify</h3>
+            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Music & playlists</p>
+            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">ဂီတများနှင့် playlist များ</p>
+            <div class="social-hover-text en-only">Listen →</div>
+            <div class="social-hover-text my-only">နားထောင်ရန် →</div>
+          </div>
+        </a>
+
+        <!-- Apple Music -->
+        <a href="https://music.apple.com/us/artist/rhyzoe/1585617412" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="apple-music" data-aos="fade-up" data-aos-delay="500">
+          <div class="social-card-inner">
+            <div class="social-icon" style="background: linear-gradient(135deg, #FA243C, #FF6B6B); color: white; font-size: 2.5rem;">🎶</div>
+            <h3 class="en-only">Apple Music</h3>
+            <h3 class="my-only">Apple Music</h3>
+            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Stream on Apple Music</p>
+            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">Apple Music တွင် ကြည့်ရှုရန်</p>
+            <div class="social-hover-text en-only">Listen →</div>
+            <div class="social-hover-text my-only">နားထောင်ရန် →</div>
+          </div>
+        </a>
+
+        <!-- YouTube Rhyzoe -->
+        <a href="https://youtube.com/@rhyzoeinburma" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="youtube-rhyzoe" data-aos="fade-up" data-aos-delay="600">
+          <div class="social-card-inner">
+            <div class="social-icon" style="background: linear-gradient(135deg, #FF0000, #CC0000); color: white; font-size: 2.5rem;">📺</div>
+            <h3 class="en-only">YouTube (Rhyzoe)</h3>
+            <h3 class="my-only">YouTube (Rhyzoe)</h3>
+            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Main channel & content</p>
+            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">အဓိကစာသုံးခြင်းနှင့် အကြောင်းအရာများ</p>
+            <div class="social-hover-text en-only">Subscribe →</div>
+            <div class="social-hover-text my-only">စာရင်းသွင်းရန် →</div>
+          </div>
+        </a>
+
+        <!-- YouTube Zayat Vibes -->
+        <a href="https://youtube.com/@zayatvibes" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="youtube-zayat" data-aos="fade-up" data-aos-delay="700">
+          <div class="social-card-inner">
+            <div class="social-icon" style="background: linear-gradient(135deg, #FF0000, #CC0000); color: white; font-size: 2.5rem;">🎬</div>
+            <h3 class="en-only">YouTube (Zayat Vibes)</h3>
+            <h3 class="my-only">YouTube (Zayat Vibes)</h3>
+            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Music & vibes channel</p>
+            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">ဂီတ နှင့် အကျင့်များ</p>
+            <div class="social-hover-text en-only">Subscribe →</div>
+            <div class="social-hover-text my-only">စာရင်းသွင်းရန် →</div>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>
