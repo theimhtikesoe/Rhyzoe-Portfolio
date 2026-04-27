@@ -1,0 +1,164 @@
+<!-- 
+  Social Hub V2 - Dark Neon Cyberpunk
+  Requirements: 
+  - Tailwind CSS (CDN)
+  - Framer Motion (via Motion One or custom script)
+  - Lucide Icons (CDN)
+-->
+<section id="social-hub" class="relative py-24 overflow-hidden bg-[#0A0A0A] font-['Space_Grotesk']">
+    <!-- Animated Background Gradient -->
+    <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-cyan-500/20 blur-[120px] animate-pulse"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-500/20 blur-[120px] animate-pulse"></div>
+    </div>
+
+    <div class="container relative z-10 px-6 mx-auto max-w-7xl">
+        <div class="text-center mb-16" data-aos="fade-down">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 font-['Orbitron'] uppercase">
+                Connect Everywhere
+            </h2>
+            <p class="text-gray-400 text-lg md:text-xl font-light">
+                Not a fan of forms? Tap in directly.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+            <!-- Spotify -->
+            <a href="https://open.spotify.com/artist/6nyd1OiXag3LVVhASA1HQ9" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #1DB954; --glow-color: rgba(29, 185, 84, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#1DB954]">
+                    <i data-lucide="music" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Listen My Sound</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Spotify</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#1DB954]" style="box-shadow: 0 0 20px rgba(29, 185, 84, 0.5), inset 0 0 10px rgba(29, 185, 84, 0.5);"></div>
+            </a>
+
+            <!-- Apple Music -->
+            <a href="https://music.apple.com/us/artist/rhyzoe/1585617412" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #FA243C; --glow-color: rgba(250, 36, 60, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#FA243C]">
+                    <i data-lucide="audio-lines" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Listen My Sound</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Apple Music</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#FA243C]" style="box-shadow: 0 0 20px rgba(250, 36, 60, 0.5), inset 0 0 10px rgba(250, 36, 60, 0.5);"></div>
+            </a>
+
+            <!-- YouTube (Rhyzoe) -->
+            <a href="https://youtube.com/@rhyzoeinburma" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #FF0000; --glow-color: rgba(255, 0, 0, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#FF0000]">
+                    <i data-lucide="youtube" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Watch My Vision</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">YouTube (Rhyzoe)</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#FF0000]" style="box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 10px rgba(255, 0, 0, 0.5);"></div>
+            </a>
+
+            <!-- YouTube (Zayat Vibes) -->
+            <a href="https://youtube.com/@zayatvibes" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #FF0000; --glow-color: rgba(255, 0, 0, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#FF0000]">
+                    <i data-lucide="play-circle" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Watch My Vision</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">YouTube (Zayat Vibes)</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#FF0000]" style="box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 10px rgba(255, 0, 0, 0.5);"></div>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/mgrhyzoe" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #E4405F; --glow-color: rgba(228, 64, 95, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#E4405F]">
+                    <i data-lucide="instagram" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Follow My Journey</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Instagram</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#E4405F]" style="box-shadow: 0 0 20px rgba(228, 64, 95, 0.5), inset 0 0 10px rgba(228, 64, 95, 0.5);"></div>
+            </a>
+
+            <!-- LINE -->
+            <a href="https://line.me/ti/p/DaXybLSsSJ" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #00B900; --glow-color: rgba(0, 185, 0, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#00B900]">
+                    <i data-lucide="message-circle" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Tap In Directly</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">LINE</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#00B900]" style="box-shadow: 0 0 20px rgba(0, 185, 0, 0.5), inset 0 0 10px rgba(0, 185, 0, 0.5);"></div>
+            </a>
+
+            <!-- Facebook Personal -->
+            <a href="https://www.facebook.com/share/163Eysu3YX/" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #1877F2; --glow-color: rgba(24, 119, 242, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#1877F2]">
+                    <i data-lucide="facebook" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Stay Connected</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Facebook Personal</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#1877F2]" style="box-shadow: 0 0 20px rgba(24, 119, 242, 0.5), inset 0 0 10px rgba(24, 119, 242, 0.5);"></div>
+            </a>
+
+            <!-- Facebook Page -->
+            <a href="https://www.facebook.com/share/1FvL5c8caz/" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #1877F2; --glow-color: rgba(24, 119, 242, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#1877F2]">
+                    <i data-lucide="users" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Stay Connected</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Facebook Page</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#1877F2]" style="box-shadow: 0 0 20px rgba(24, 119, 242, 0.5), inset 0 0 10px rgba(24, 119, 242, 0.5);"></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Custom Animations */
+    @keyframes pulse-bg {
+        0%, 100% { opacity: 0.1; transform: scale(1); }
+        50% { opacity: 0.2; transform: scale(1.1); }
+    }
+    .animate-pulse {
+        animation: pulse-bg 8s infinite ease-in-out;
+    }
+    
+    /* Glassmorphism & Hover Effects */
+    .social-card-v2 {
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    .social-card-v2:hover {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
+<!-- Load Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>

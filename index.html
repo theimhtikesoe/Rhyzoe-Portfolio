@@ -16,6 +16,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <!-- AOS for scroll animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'space': ['Space Grotesk', 'sans-serif'],
+            'orbitron': ['Orbitron', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
   <style>
     :root {
       --bg-color: #0A0A0A;
@@ -305,177 +319,20 @@
       pointer-events: all;
     }
 
-    /* Social Hub Styles */
-    .social-card {
-      position: relative;
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 30px;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      cursor: pointer;
+    /* Social Hub V2 Styles */
+    @keyframes pulse-bg {
+        0%, 100% { opacity: 0.1; transform: scale(1); }
+        50% { opacity: 0.2; transform: scale(1.1); }
     }
-
-    .social-card:hover {
-      transform: translateY(-15px) scale(1.02);
-      border-color: rgba(255, 255, 255, 0.15);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    .animate-pulse-custom {
+        animation: pulse-bg 8s infinite ease-in-out;
     }
-
-    .social-card[data-platform="facebook-personal"]:hover,
-    .social-card[data-platform="facebook-page"]:hover {
-      box-shadow: 0 0 40px rgba(24, 119, 242, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
-      border-color: rgba(24, 119, 242, 0.5);
+    
+    .social-card-v2 {
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
-
-    .social-card[data-platform="line"]:hover {
-      box-shadow: 0 0 40px rgba(0, 185, 0, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
-      border-color: rgba(0, 185, 0, 0.5);
-    }
-
-    .social-card[data-platform="instagram"]:hover {
-      box-shadow: 0 0 40px rgba(228, 64, 95, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
-      border-color: rgba(228, 64, 95, 0.5);
-    }
-
-    .social-card[data-platform="spotify"]:hover {
-      box-shadow: 0 0 40px rgba(29, 185, 84, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
-      border-color: rgba(29, 185, 84, 0.5);
-    }
-
-    .social-card[data-platform="apple-music"]:hover {
-      box-shadow: 0 0 40px rgba(250, 36, 60, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
-      border-color: rgba(250, 36, 60, 0.5);
-    }
-
-    .social-card[data-platform="youtube-rhyzoe"]:hover,
-    .social-card[data-platform="youtube-zayat"]:hover {
-      box-shadow: 0 0 40px rgba(255, 0, 0, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
-      border-color: rgba(255, 0, 0, 0.5);
-    }
-
-    .social-card[data-platform="github"]:hover {
-      box-shadow: 0 0 40px rgba(100, 100, 100, 0.3), 0 30px 60px rgba(0, 0, 0, 0.5);
-      border-color: rgba(100, 100, 100, 0.5);
-    }
-
-    .social-card-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      width: 100%;
-    }
-
-    .social-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      transition: all 0.4s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .social-card:hover .social-icon {
-      transform: scale(1.15) rotate(5deg);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    }
-
-    .social-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 0;
-      color: #fff;
-    }
-
-    .social-card p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: #aaa;
-      transition: color 0.3s ease;
-    }
-
-    .social-hover-text {
-      display: none;
-      font-weight: 600;
-      color: var(--accent-cyan);
-      font-size: 0.95rem;
-      margin-top: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .social-card:hover .social-hover-text {
-      display: block;
-      animation: slideUp 0.4s ease;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .social-card:focus-visible {
-      outline: 2px solid var(--accent-cyan);
-      outline-offset: 2px;
-    }
-
-    @media (max-width: 768px) {
-      .social-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
-        gap: 20px !important;
-      }
-
-      .social-card {
-        min-height: 280px;
-        padding: 20px;
-      }
-
-      .social-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 2rem;
-      }
-
-      .social-card h3 {
-        font-size: 1rem;
-      }
-
-      .social-card p {
-        font-size: 0.85rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .social-grid {
-        grid-template-columns: 1fr !important;
-      }
-
-      .social-card {
-        min-height: 240px;
-      }
+    .social-card-v2:hover {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
@@ -483,7 +340,7 @@
 
   <div class="controls">
     <div class="lang-control">
-      <select class="toggle-select" onchange="changeLanguage(this.value)">
+      <select onchange="changeLanguage(this.value)" class="toggle-select">
         <option value="en">English</option>
         <option value="my">မြန်မာ</option>
       </select>
@@ -491,13 +348,10 @@
   </div>
 
   <section id="hero">
-    <div class="container" data-aos="fade-up" data-aos-duration="1500">
-      <h1 class="neon-title">Rhyzoe</h1>
-      <p class="tagline en-only">Multidisciplinary Developer & Creative Professional</p>
-      <p class="tagline my-only">Multidisciplinary Developer & Creative Professional</p>
-      
-      <p class="en-only" style="max-width: 600px; margin: 0 auto 40px; color: #aaa;">"I build systems and stories — with code, beats, and soul."</p>
-      <p class="my-only" style="max-width: 600px; margin: 0 auto 40px; color: #aaa;">"အယူအဆများကို လက်တွေ့အသုံးချနိုင်သော System များနှင့် Scalable Output များအဖြစ် ပြောင်းလဲတည်ဆောက်သူ။"</p>
+    <div class="container" data-aos="zoom-out">
+      <h1 class="neon-title">RHYZOE</h1>
+      <p class="tagline en-only">Dev x Artist | Creative Direction | Product Systems</p>
+      <p class="tagline my-only">Dev x Artist | Creative Direction | Product Systems</p>
       
       <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView()" style="padding: 14px 32px;">
         <span class="en-only">View Live Demos</span>
@@ -622,136 +476,137 @@
     </div>
   </section>
 
-  <!-- Social Hub Section -->
-  <section id="social-hub" style="padding: 100px 0; background: linear-gradient(135deg, rgba(0, 245, 255, 0.05) 0%, rgba(176, 38, 255, 0.05) 100%);">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 80px;" data-aos="fade-down">
-        <h2 class="en-only" style="color: var(--accent-cyan); margin-bottom: 20px;">🌐 Connect With Me Everywhere</h2>
-        <h2 class="my-only" style="color: var(--accent-cyan); margin-bottom: 20px;">🌐 ကျွန်ုပ်နှင့် အနှံ့အပြန် ဆက်သွယ်ရန်</h2>
-        <p class="en-only" style="color: #888; font-size: 1.1rem;">Follow my journey across multiple platforms</p>
-        <p class="my-only" style="color: #888; font-size: 1.1rem;">ကျွန်ုပ်၏ အဖြေများကို အမျိုးမျိုးသော platform များတွင် လိုက်နာပါ</p>
-      </div>
+  <!-- Redesigned Social Hub Section -->
+  <section id="social-hub" class="relative py-24 overflow-hidden bg-[#0A0A0A] font-['Space_Grotesk']">
+    <!-- Animated Background Gradient -->
+    <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-cyan-500/20 blur-[120px] animate-pulse-custom"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-purple-500/20 blur-[120px] animate-pulse-custom"></div>
+    </div>
 
-      <div class="social-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
-        
-        <!-- Facebook Personal -->
-        <a href="https://www.facebook.com/share/163Eysu3YX/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="facebook-personal" data-aos="fade-up" data-aos-delay="0">
-          <div class="social-card-inner">
-            <div class="social-icon" style="background: linear-gradient(135deg, #1877F2, #0A66C2); color: white; font-size: 2.5rem;">f</div>
-            <h3 class="en-only">Facebook Personal</h3>
-            <h3 class="my-only">ကျွန်ုပ်၏ Facebook</h3>
-            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Personal profile & updates</p>
-            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">ကျွန်ုပ်၏ အကောင့်နှင့် သတင်းများ</p>
-            <div class="social-hover-text en-only">Follow →</div>
-            <div class="social-hover-text my-only">လိုက်နာရန် →</div>
-          </div>
-        </a>
+    <div class="container relative z-10 px-6 mx-auto max-w-7xl">
+        <div class="text-center mb-16" data-aos="fade-down">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 font-['Orbitron'] uppercase">
+                Connect Everywhere
+            </h2>
+            <p class="text-gray-400 text-lg md:text-xl font-light">
+                Not a fan of forms? Tap in directly.
+            </p>
+        </div>
 
-        <!-- Facebook Page -->
-        <a href="https://www.facebook.com/share/1FvL5c8caz/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="facebook-page" data-aos="fade-up" data-aos-delay="100">
-          <div class="social-card-inner">
-            <div class="social-icon" style="background: linear-gradient(135deg, #1877F2, #0A66C2); color: white; font-size: 2.5rem;">📄</div>
-            <h3 class="en-only">Facebook Page</h3>
-            <h3 class="my-only">ကျွန်ုပ်၏ Page</h3>
-            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Official page & projects</p>
-            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">အရformal Page နှင့် ပရောဂျက်များ</p>
-            <div class="social-hover-text en-only">Follow →</div>
-            <div class="social-hover-text my-only">လိုက်နာရန် →</div>
-          </div>
-        </a>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+            <!-- Spotify -->
+            <a href="https://open.spotify.com/artist/6nyd1OiXag3LVVhASA1HQ9" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #1DB954; --glow-color: rgba(29, 185, 84, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#1DB954]">
+                    <i data-lucide="music" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Listen My Sound</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Spotify</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#1DB954]" style="box-shadow: 0 0 20px rgba(29, 185, 84, 0.5), inset 0 0 10px rgba(29, 185, 84, 0.5);"></div>
+            </a>
 
-        <!-- LINE -->
-        <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fline.me%2Fti%2Fp%2FDaXybLSsSJ%3Ffbclid%3DIwZXh0bgNhZW0CMTEAAR7y3dPrmPAq3OkYGyUWR3oAJofTBlgEHrz1nh-aUgVEJ84xt2HBWhQypV9PiA_aem_RRCuMhfsChVtCcwrojw0YQ&h=AT04600IWnFTGrhryildLagBDkbwtjNGTs0f1AiCQK8UpJiifYOZI9uM9Ve_88woClfsf68NmKDV9BzuwL39w80aHM8JTUNp9ifTbs9JpzQCmoj3hPCoco4jFioaTXE&s=1" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="line" data-aos="fade-up" data-aos-delay="200">
-          <div class="social-card-inner">
-            <div class="social-icon" style="background: linear-gradient(135deg, #00B900, #00D000); color: white; font-size: 2.5rem;">💬</div>
-            <h3 class="en-only">LINE</h3>
-            <h3 class="my-only">LINE</h3>
-            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Direct messaging & chat</p>
-            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">တစ်ဆင့်တည်း စာတိုက်ခြင်း</p>
-            <div class="social-hover-text en-only">Chat →</div>
-            <div class="social-hover-text my-only">စာတိုက်ရန် →</div>
-          </div>
-        </a>
+            <!-- Apple Music -->
+            <a href="https://music.apple.com/us/artist/rhyzoe/1585617412" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #FA243C; --glow-color: rgba(250, 36, 60, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#FA243C]">
+                    <i data-lucide="audio-lines" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Listen My Sound</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Apple Music</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#FA243C]" style="box-shadow: 0 0 20px rgba(250, 36, 60, 0.5), inset 0 0 10px rgba(250, 36, 60, 0.5);"></div>
+            </a>
 
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/mgrhyzoe?igsh=eWthb2p6OG9lN24w&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="instagram" data-aos="fade-up" data-aos-delay="300">
-          <div class="social-card-inner">
-            <div class="social-icon" style="background: linear-gradient(135deg, #E4405F, #FD1D1D, #F77737); color: white; font-size: 2.5rem;">📷</div>
-            <h3 class="en-only">Instagram</h3>
-            <h3 class="my-only">Instagram</h3>
-            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Visual content & stories</p>
-            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">ရုပ်ပုံများနှင့် အကြောင်းအရာများ</p>
-            <div class="social-hover-text en-only">Follow →</div>
-            <div class="social-hover-text my-only">လိုက်နာရန် →</div>
-          </div>
-        </a>
+            <!-- YouTube (Rhyzoe) -->
+            <a href="https://youtube.com/@rhyzoeinburma" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #FF0000; --glow-color: rgba(255, 0, 0, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#FF0000]">
+                    <i data-lucide="youtube" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Watch My Vision</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">YouTube (Rhyzoe)</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#FF0000]" style="box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 10px rgba(255, 0, 0, 0.5);"></div>
+            </a>
 
-        <!-- Spotify -->
-        <a href="https://open.spotify.com/artist/6nyd1OiXag3LVVhASA1HQ9?si=WIDDnjU_Rjm18G8C31K9Uw&nd=1&utm_medium=organic&_branch_referrer=H4sIAAAAAAAAA72NzYrCMBSFnyZdtqYZRIUixeLMoDKM4s%2Bu3LZJezUm4SZF3Pjs1oF5BeEsDufj43QhOD9LEu9sQHWPwblYo7kkc0e26euQWSdNxNIP1Wtd9qSz7qUwkbN0OeSF43%2B7ttdhAgrow1DG5t7wHzxBK9aHQ5fvcv71O2Vi6ZGJ4vhdFOa8L7fnK598ThaCr6b7298VaF1BfXnDHUvHphkoj5SE0JPMLLVgsI4eJJUkQtOWFdmbl5RtbIVasnS0AwWET1KZmIM8AQAA&product=open&%24full_url=https%3A%2F%2Fopen.spotify.com%2Fartist%2F6nyd1OiXag3LVVhASA1HQ9%3Fsi%3DWIDDnjU_Rjm18G8C31K9Uw&feature=organic&_branch_match_id=1459086486978610187" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="spotify" data-aos="fade-up" data-aos-delay="400">
-          <div class="social-card-inner">
-            <div class="social-icon" style="background: linear-gradient(135deg, #1DB954, #1ed760); color: white; font-size: 2.5rem;">🎵</div>
-            <h3 class="en-only">Spotify</h3>
-            <h3 class="my-only">Spotify</h3>
-            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Music & playlists</p>
-            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">ဂီတများနှင့် playlist များ</p>
-            <div class="social-hover-text en-only">Listen →</div>
-            <div class="social-hover-text my-only">နားထောင်ရန် →</div>
-          </div>
-        </a>
+            <!-- YouTube (Zayat Vibes) -->
+            <a href="https://youtube.com/@zayatvibes" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #FF0000; --glow-color: rgba(255, 0, 0, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#FF0000]">
+                    <i data-lucide="play-circle" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Watch My Vision</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">YouTube (Zayat Vibes)</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#FF0000]" style="box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 10px rgba(255, 0, 0, 0.5);"></div>
+            </a>
 
-        <!-- Apple Music -->
-        <a href="https://music.apple.com/us/artist/rhyzoe/1585617412" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="apple-music" data-aos="fade-up" data-aos-delay="500">
-          <div class="social-card-inner">
-            <div class="social-icon" style="background: linear-gradient(135deg, #FA243C, #FF6B6B); color: white; font-size: 2.5rem;">🎶</div>
-            <h3 class="en-only">Apple Music</h3>
-            <h3 class="my-only">Apple Music</h3>
-            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Stream on Apple Music</p>
-            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">Apple Music တွင် ကြည့်ရှုရန်</p>
-            <div class="social-hover-text en-only">Listen →</div>
-            <div class="social-hover-text my-only">နားထောင်ရန် →</div>
-          </div>
-        </a>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/mgrhyzoe" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #E4405F; --glow-color: rgba(228, 64, 95, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#E4405F]">
+                    <i data-lucide="instagram" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Follow My Journey</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Instagram</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#E4405F]" style="box-shadow: 0 0 20px rgba(228, 64, 95, 0.5), inset 0 0 10px rgba(228, 64, 95, 0.5);"></div>
+            </a>
 
-        <!-- YouTube Rhyzoe -->
-        <a href="https://youtube.com/@rhyzoeinburma?si=rYx3gDO96ok2DpPA" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="youtube-rhyzoe" data-aos="fade-up" data-aos-delay="600">
-          <div class="social-card-inner">
-            <div class="social-icon" style="background: linear-gradient(135deg, #FF0000, #CC0000); color: white; font-size: 2.5rem;">📺</div>
-            <h3 class="en-only">YouTube (Rhyzoe)</h3>
-            <h3 class="my-only">YouTube (Rhyzoe)</h3>
-            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Main channel & content</p>
-            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">အဓိကစာသုံးခြင်းနှင့် အကြောင်းအရာများ</p>
-            <div class="social-hover-text en-only">Subscribe →</div>
-            <div class="social-hover-text my-only">စာရင်းသွင်းရန် →</div>
-          </div>
-        </a>
+            <!-- LINE -->
+            <a href="https://line.me/ti/p/DaXybLSsSJ" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #00B900; --glow-color: rgba(0, 185, 0, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#00B900]">
+                    <i data-lucide="message-circle" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Tap In Directly</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">LINE</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#00B900]" style="box-shadow: 0 0 20px rgba(0, 185, 0, 0.5), inset 0 0 10px rgba(0, 185, 0, 0.5);"></div>
+            </a>
 
-        <!-- YouTube Zayat Vibes -->
-        <a href="https://youtube.com/@zayatvibes?si=yrJQd4ibru6gzOro" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="youtube-zayat" data-aos="fade-up" data-aos-delay="700">
-          <div class="social-card-inner">
-            <div class="social-icon" style="background: linear-gradient(135deg, #FF0000, #CC0000); color: white; font-size: 2.5rem;">🎬</div>
-            <h3 class="en-only">YouTube (Zayat Vibes)</h3>
-            <h3 class="my-only">YouTube (Zayat Vibes)</h3>
-            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Music & vibes channel</p>
-            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">ဂီတ နှင့် အကျင့်များ</p>
-            <div class="social-hover-text en-only">Subscribe →</div>
-            <div class="social-hover-text my-only">စာရင်းသွင်းရန် →</div>
-          </div>
-        </a>
+            <!-- Facebook Personal -->
+            <a href="https://www.facebook.com/share/163Eysu3YX/" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #1877F2; --glow-color: rgba(24, 119, 242, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#1877F2]">
+                    <i data-lucide="facebook" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Stay Connected</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Facebook Personal</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#1877F2]" style="box-shadow: 0 0 20px rgba(24, 119, 242, 0.5), inset 0 0 10px rgba(24, 119, 242, 0.5);"></div>
+            </a>
 
-        <!-- GitHub -->
-        <a href="https://github.com/theimhtikesoe" target="_blank" rel="noopener noreferrer" class="social-card" data-platform="github" data-aos="fade-up" data-aos-delay="800">
-          <div class="social-card-inner">
-            <div class="social-icon" style="background: linear-gradient(135deg, #333333, #666666); color: white; font-size: 2.5rem;">💻</div>
-            <h3 class="en-only">GitHub</h3>
-            <h3 class="my-only">GitHub</h3>
-            <p class="en-only" style="color: #aaa; font-size: 0.9rem;">Code & projects</p>
-            <p class="my-only" style="color: #aaa; font-size: 0.9rem;">Code နှင့် ပရောဂျက်များ</p>
-            <div class="social-hover-text en-only">Follow →</div>
-            <div class="social-hover-text my-only">လိုက်နာရန် →</div>
-          </div>
-        </a>
-
-      </div>
+            <!-- Facebook Page -->
+            <a href="https://www.facebook.com/share/1FvL5c8caz/" target="_blank" rel="noopener noreferrer" 
+               class="social-card-v2 group relative flex flex-col items-center justify-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white/10 hover:-translate-y-2 active:scale-95"
+               style="--accent-color: #1877F2; --glow-color: rgba(24, 119, 242, 0.5);">
+                <div class="icon-wrapper mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 text-[#1877F2]">
+                    <i data-lucide="users" class="w-10 h-10"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-white font-['Orbitron'] text-sm md:text-base font-bold mb-2 uppercase tracking-wide">Stay Connected</h3>
+                    <p class="text-gray-400 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">Facebook Page</p>
+                </div>
+                <div class="glow-border absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-[#1877F2]" style="box-shadow: 0 0 20px rgba(24, 119, 242, 0.5), inset 0 0 10px rgba(24, 119, 242, 0.5);"></div>
+            </a>
+        </div>
     </div>
   </section>
 
@@ -809,7 +664,12 @@
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Load Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
+    // Initialize Lucide
+    lucide.createIcons();
+
     // Initialize AOS
     AOS.init({
       duration: 1000,
